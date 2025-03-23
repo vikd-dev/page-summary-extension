@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Summary & Chat</title>
+  <script src="showdown.min.js"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      width: 450px;
+      padding: 20px;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+
+    #apiKeySection {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #e6f7ff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #apiKeySection h2 {
+      color: #1890ff;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+    }
+
+    #apiKeyInput {
+      width: calc(100% - 110px);
+      padding: 10px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+
+    #saveApiKey {
+      padding: 10px 15px;
+      background-color: #1890ff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #saveApiKey:hover {
+      background-color: #40a9ff;
+    }
+
+    .tab-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tab-buttons {
+      display: flex;
+      border-bottom: 2px solid #1890ff;
+    }
+
+    .tab-button {
+      padding: 10px 15px;
+      background-color: #f0f0f0;
+      border: none;
+      border-radius: 4px 4px 0 0;
+      cursor: pointer;
+      margin-right: 5px;
+      transition: background-color 0.3s;
+      color: #595959;
+    }
+
+    .tab-button.active {
+      background-color: white;
+      color: #1890ff;
+      font-weight: bold;
+    }
+
+    .tab-content {
+      padding: 15px;
+      background-color: white;
+      border-radius: 0 8px 8px 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      height: 250px;
+      overflow-y: auto;
+    }
+
+    #input {
+      width: calc(100% - 110px);
+      padding: 10px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+
+    #send {
+      padding: 10px 15px;
+      background-color: #1890ff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.3s;
+    }
+
+    #send:hover {
+      background-color: #40a9ff;
+    }
+
+    .chat-message {
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .chat-message:last-child {
+      border-bottom: none;
+    }
+
+    .chat-message strong {
+      color: #1890ff;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="apiKeySection">
+    <h2>Gemini API Key</h2>
+    <input type="text" id="apiKeyInput" placeholder="Enter your Gemini API key">
+    <button id="saveApiKey">Save API Key</button>
+  </div>
+
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-button active" data-tab="summary">Summary</button>
+      <button class="tab-button" data-tab="chat">Chat</button>
+    </div>
+
+    <div id="summary" class="tab-content">Loading summary...</div>
+    <div id="chat" class="tab-content" style="display: none;">
+        <div id="chatMessages"></div>
+        <input type="text" id="input" placeholder="Ask a question...">
+        <button id="send">Send</button>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
